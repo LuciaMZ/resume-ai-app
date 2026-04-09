@@ -1,0 +1,1 @@
+export { CompactTemplate } from './CompactTemplate';

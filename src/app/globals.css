@@ -1,0 +1,392 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+
+  --color-surface-50: #fafafa;
+  --color-surface-100: #f4f4f5;
+  --color-surface-200: #e4e4e7;
+  --color-surface-300: #d4d4d8;
+  --color-surface-400: #a1a1aa;
+  --color-surface-500: #71717a;
+  --color-surface-600: #52525b;
+  --color-surface-700: #3f3f46;
+  --color-surface-800: #27272a;
+  --color-surface-900: #18181b;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+/* ── Base Reset ─────────────────────────────────────────────────────────────── */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  background-color: var(--color-surface-50);
+  color: var(--color-surface-900);
+  font-family: var(--font-sans);
+}
+
+/* ── Scrollbar Styling ──────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-300);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-surface-400);
+}
+
+/* ── Utility Classes ────────────────────────────────────────────────────────── */
+
+.panel-scroll {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+/* ── Landing Page ─────────────────────────────────────────────────────────── */
+
+/* Glassmorphism card with @supports fallback */
+.glass-card {
+  /* Fallback: solid dark background for browsers without backdrop-filter */
+  background: rgba(15, 20, 40, 0.90);
+}
+
+@supports (backdrop-filter: blur(16px)) {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+  }
+}
+
+/* Landing page background orb animations */
+@keyframes orb-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-30px) translateX(15px);
+  }
+  50% {
+    transform: translateY(-15px) translateX(-10px);
+  }
+  75% {
+    transform: translateY(-40px) translateX(20px);
+  }
+}
+
+@keyframes orb-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+/* Hero scroll indicator animation */
+@keyframes scroll-hint {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(8px);
+  }
+}
+
+/* ── Animations ────────────────────────────────────────────────────────────── */
+
+/* Toast slide-in from right */
+@keyframes toast-enter {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.toast-enter {
+  animation: toast-enter 0.25s ease-out;
+}
+
+/* Subtle scale-in for dropdowns and dialogs */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-in {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+.fade-in {
+  animation-name: fade-in;
+}
+
+.zoom-in-95 {
+  animation-name: scale-in;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Collapsible section animation using CSS grid */
+.section-collapse-wrapper {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.2s ease-out;
+}
+
+.section-collapse-wrapper[data-collapsed="true"] {
+  grid-template-rows: 0fr;
+}
+
+.section-collapse-inner {
+  overflow: hidden;
+}
+
+/* Dropdown menu animation */
+@keyframes dropdown-open {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdown-enter {
+  animation: dropdown-open 0.15s ease-out;
+}
+
+/* Loading skeleton pulse - more subtle than default */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.skeleton-pulse {
+  animation: skeleton-pulse 1.8s ease-in-out infinite;
+}
+
+/* Initial page loading skeleton */
+.loading-skeleton {
+  background: linear-gradient(90deg, var(--color-surface-100) 25%, var(--color-surface-200) 50%, var(--color-surface-100) 75%);
+  background-size: 200% 100%;
+  animation: loading-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes loading-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Tiptap Editor Styles ──────────────────────────────────────────────────── */
+
+.tiptap {
+  outline: none;
+}
+
+.tiptap p {
+  margin: 0.25em 0;
+}
+
+.tiptap ul,
+.tiptap ol {
+  padding-left: 1.5em;
+  margin: 0.25em 0;
+}
+
+.tiptap ul {
+  list-style-type: disc;
+}
+
+.tiptap ol {
+  list-style-type: decimal;
+}
+
+.tiptap li {
+  margin: 0.15em 0;
+}
+
+.tiptap li p {
+  margin: 0;
+}
+
+.tiptap strong {
+  font-weight: 600;
+}
+
+.tiptap em {
+  font-style: italic;
+}
+
+.tiptap u {
+  text-decoration: underline;
+}
+
+.tiptap a {
+  color: var(--color-primary-600);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.tiptap a:hover {
+  color: var(--color-primary-700);
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: var(--color-surface-400);
+  pointer-events: none;
+  height: 0;
+}
+
+/* ── Template Content Styles ───────────────────────────────────────────────── */
+/* Applied to HTML content rendered inside resume templates (Tiptap output). */
+
+.template-content p {
+  margin: 0.15em 0;
+}
+
+.template-content ul,
+.template-content ol {
+  padding-left: 1.4em;
+  margin: 0.15em 0;
+}
+
+.template-content ul {
+  list-style-type: disc;
+}
+
+.template-content ol {
+  list-style-type: decimal;
+}
+
+.template-content li {
+  margin: 0.1em 0;
+}
+
+.template-content li p {
+  margin: 0;
+}
+
+.template-content strong {
+  font-weight: 600;
+}
+
+.template-content em {
+  font-style: italic;
+}
+
+.template-content u {
+  text-decoration: underline;
+}
+
+.template-content a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* ── Print Styles ──────────────────────────────────────────────────────────── */
+
+@media print {
+  /* Page setup: US Letter, no margins (template has its own padding) */
+  @page {
+    size: letter;
+    margin: 0;
+  }
+
+  /* Reset html/body for clean print output */
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: white !important;
+  }
+
+  /* Force colors to print (backgrounds, accent colors, etc.) */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Hide all app UI */
+  body > * {
+    display: none !important;
+  }
+
+  /* Show only the print target */
+  #resume-print-target {
+    display: block !important;
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    width: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Allow page breaks through the document structure */
+  #resume-print-target,
+  #resume-print-target > div,
+  #resume-print-target > div > div,
+  [data-resume-section],
+  [data-resume-entry] {
+    page-break-inside: auto;
+    break-inside: auto;
+  }
+}
