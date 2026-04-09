@@ -8,35 +8,35 @@ const features = [
     title: 'WYSIWYG Editor',
     description:
       'Rich text editing with bold, italic, lists, and links. Format your resume content exactly how you want it.',
-    gradient: 'from-blue-400 to-blue-600',
+    iconBg: 'bg-[var(--color-secondary)]',
   },
   {
     icon: Eye,
     title: 'Real-Time Preview',
     description:
       'See every change instantly as you type. The live preview updates in real time, so what you see is what you get.',
-    gradient: 'from-violet-400 to-violet-600',
+    iconBg: 'bg-[var(--color-accent)]',
   },
   {
     icon: Sparkles,
     title: 'AI Suggestions',
     description:
       'Get smart, contextual improvements for your bullet points. Powered by your own OpenAI API key -- no subscription needed.',
-    gradient: 'from-cyan-400 to-cyan-600',
+    iconBg: 'bg-[var(--color-secondary)]',
   },
   {
     icon: FileDown,
     title: 'PDF Export',
     description:
       'Download your finished resume as a pixel-perfect PDF, ready to submit to any job application.',
-    gradient: 'from-blue-400 to-violet-500',
+    iconBg: 'bg-[var(--color-accent)]',
   },
   {
     icon: UserX,
     title: 'No Sign-Up Needed',
     description:
       'Start building immediately. No account, no email, no friction. Your data stays in your browser.',
-    gradient: 'from-violet-400 to-cyan-500',
+    iconBg: 'bg-[var(--color-secondary)]',
   },
 ];
 
@@ -46,10 +46,10 @@ export function FeaturesSection() {
       <div className="relative z-10 mx-auto max-w-6xl">
         {/* Section Header */}
         <div className="mb-16 text-center">
-          <h2 className="text-3xl font-bold text-slate-50 sm:text-4xl">
+          <h2 className="text-3xl font-bold text-[var(--color-primary)] sm:text-4xl">
             Everything You Need
           </h2>
-          <p className="mt-4 text-lg text-slate-300 sm:text-xl">
+          <p className="mt-4 text-lg text-slate-600 sm:text-xl">
             Powerful features to build the perfect resume
           </p>
         </div>
@@ -59,14 +59,14 @@ export function FeaturesSection() {
           {features.slice(0, 3).map((feature) => (
             <GlassCard key={feature.title}>
               <div
-                className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${feature.gradient} shadow-lg`}
+                className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl ${feature.iconBg} shadow-sm shadow-slate-300/70`}
               >
                 <feature.icon className="h-6 w-6 text-white" strokeWidth={1.8} />
               </div>
-              <h3 className="mb-2 text-xl font-semibold text-white">
+              <h3 className="mb-2 text-xl font-semibold text-[var(--color-primary)]">
                 {feature.title}
               </h3>
-              <p className="text-base leading-relaxed text-slate-300">
+              <p className="text-base leading-relaxed text-slate-700">
                 {feature.description}
               </p>
             </GlassCard>
@@ -78,14 +78,14 @@ export function FeaturesSection() {
           {features.slice(3).map((feature) => (
             <GlassCard key={feature.title}>
               <div
-                className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${feature.gradient} shadow-lg`}
+                className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl ${feature.iconBg} shadow-sm shadow-slate-300/70`}
               >
                 <feature.icon className="h-6 w-6 text-white" strokeWidth={1.8} />
               </div>
-              <h3 className="mb-2 text-xl font-semibold text-white">
+              <h3 className="mb-2 text-xl font-semibold text-[var(--color-primary)]">
                 {feature.title}
               </h3>
-              <p className="text-base leading-relaxed text-slate-300">
+              <p className="text-base leading-relaxed text-slate-700">
                 {feature.description}
               </p>
             </GlassCard>

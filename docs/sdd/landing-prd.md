@@ -292,7 +292,7 @@ The landing page introduces a dark-themed visual system that is separate from th
 
 2. **New CSS custom properties.** Add landing-page-specific variables to `globals.css` under a clearly marked section, or create a co-located CSS module.
 
-3. **Tailwind 4 approach.** The landing page primarily uses Tailwind utility classes with arbitrary values where needed (`bg-[#0A0E1A]`, `backdrop-blur-xl`, `border-white/10`). No Tailwind config changes required -- Tailwind 4's arbitrary value support covers all glassmorphism effects.
+3. **Tailwind 4 approach.** The landing page primarily uses Tailwind utility classes with arbitrary values where needed (`bg-[#F8FAFC]`, `backdrop-blur-xl`, `border-white/10`). No Tailwind config changes required -- Tailwind 4's arbitrary value support covers all glassmorphism effects.
 
 4. **Keyframe animations.** Define in `globals.css` under a `/* Landing Page Animations */` section:
    - `orb-float` -- slow vertical drift for background orbs
@@ -364,13 +364,13 @@ export const metadata: Metadata = {
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| `--landing-bg-dark` | `#0A0E1A` | Page background (top) |
-| `--landing-bg-mid` | `#1E1B4B` | Page background (bottom / gradient stop) |
+| `--landing-bg-dark` | `#F8FAFC` | Page background (top) |
+| `--landing-bg-mid` | `#E5E7EB` | Page background (bottom / gradient stop) |
 | `--landing-accent-blue` | `#3B82F6` | Primary accent (CTAs, active states) |
 | `--landing-accent-blue-light` | `#60A5FA` | Gradient end for blue accents |
-| `--landing-accent-violet` | `#8B5CF6` | Secondary accent |
-| `--landing-accent-violet-light` | `#A78BFA` | Gradient end for violet accents |
-| `--landing-accent-cyan` | `#06B6D4` | Tertiary highlight / glow |
+| `--landing-secondary` | `#2563EB` | Secondary accent |
+| `--landing-secondary-light` | `#1D4ED8` | Gradient end for violet accents |
+| `--landing-accent` | `#14B8A6` | Tertiary highlight / glow |
 | `--landing-glass-bg` | `rgba(255,255,255,0.05)` | Glass surface base |
 | `--landing-glass-bg-hover` | `rgba(255,255,255,0.10)` | Glass surface hover |
 | `--landing-glass-border` | `rgba(255,255,255,0.10)` | Glass border |
@@ -383,7 +383,7 @@ export const metadata: Metadata = {
 
 | Element | Classes | Details |
 |---------|---------|---------|
-| Hero heading | `text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight` | Gradient text via `bg-gradient-to-r from-blue-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent` |
+| Hero heading | `text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight` | Gradient text via `bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent` |
 | Section heading | `text-3xl sm:text-4xl font-bold` | White (`text-slate-50`) |
 | Section subheading | `text-lg sm:text-xl font-normal` | Slate-300 |
 | Card title | `text-xl font-semibold` | White |
@@ -410,7 +410,7 @@ Hover:
   transition: all 0.3s ease
 
 Fallback (no backdrop-filter support):
-  background: rgba(15, 20, 40, 0.90)
+  background: rgba(248, 250, 252, 0.75)
 ```
 
 #### Background Orbs Specification
@@ -418,8 +418,8 @@ Fallback (no backdrop-filter support):
 | Orb | Size | Color | Position | Animation |
 |-----|------|-------|----------|-----------|
 | Orb 1 | 400-600px | `from-blue-500/30 to-transparent` | Top-right of hero | `orb-float` 20s ease-in-out infinite |
-| Orb 2 | 300-500px | `from-violet-500/20 to-transparent` | Left of features section | `orb-float` 25s ease-in-out infinite reverse |
-| Orb 3 | 350-550px | `from-cyan-500/20 to-transparent` | Right of AI section | `orb-pulse` 15s ease-in-out infinite |
+| Orb 2 | 300-500px | `from-accent/20 to-transparent` | Left of features section | `orb-float` 25s ease-in-out infinite reverse |
+| Orb 3 | 350-550px | `from-secondary/15 to-transparent` | Right of AI section | `orb-pulse` 15s ease-in-out infinite |
 | Orb 4 | 250-400px | `from-blue-600/15 to-transparent` | Bottom-left of CTA section | `orb-float` 30s ease-in-out infinite |
 
 All orbs: `border-radius: 50%`, `filter: blur(80px)` to `blur(120px)`, `position: absolute`, `pointer-events: none`, `z-index: 0`.
@@ -428,7 +428,7 @@ All orbs: `border-radius: 50%`, `filter: blur(80px)` to `blur(120px)`, `position
 
 ```
 Primary CTA ("Start Building"):
-  background: linear-gradient(135deg, #3B82F6, #8B5CF6)
+  background: linear-gradient(135deg, #3B82F6, #2563EB)
   color: white
   padding: 0.875rem 2rem (py-3.5 px-8)
   border-radius: 0.75rem (rounded-xl)
@@ -481,7 +481,7 @@ min-h-screen, flex items-center justify-center
 
    [ Start Building ]    Learn More (scroll link)
 
-             [Decorative Orb: violet, bottom-left]
+             [Decorative Orb: teal, bottom-left]
 ```
 
 #### Section 3: Features
@@ -654,10 +654,10 @@ py-8
 
 | Element | Default | Hover | Focus | Active |
 |---------|---------|-------|-------|--------|
-| Navbar link | `text-slate-300` | `text-white` | `ring-2 ring-blue-400 ring-offset-2 ring-offset-[#0A0E1A]` | `text-white` |
-| CTA button | Gradient bg, glow shadow | Increased glow, `translateY(-1px)` | `ring-2 ring-blue-400 ring-offset-2 ring-offset-[#0A0E1A]` | `translateY(0)`, reduced glow |
+| Navbar link | `text-slate-300` | `text-white` | `ring-2 ring-blue-400 ring-offset-2 ring-offset-[#F8FAFC]` | `text-white` |
+| CTA button | Gradient bg, glow shadow | Increased glow, `translateY(-1px)` | `ring-2 ring-blue-400 ring-offset-2 ring-offset-[#F8FAFC]` | `translateY(0)`, reduced glow |
 | Glass card | Default glass styles | Brighter bg, brighter border, blue glow shadow, `translateY(-2px)` | `ring-2 ring-blue-400` | N/A |
-| Footer link | `text-slate-400` | `text-slate-200` | `ring-2 ring-blue-400 ring-offset-2 ring-offset-[#0A0E1A]` | `text-white` |
+| Footer link | `text-slate-400` | `text-slate-200` | `ring-2 ring-blue-400 ring-offset-2 ring-offset-[#F8FAFC]` | `text-white` |
 | Mobile menu toggle | `text-slate-300` | `text-white` | `ring-2 ring-blue-400` | `text-white` |
 
 ---
@@ -668,7 +668,7 @@ py-8
 
 | # | Risk | Likelihood | Impact | Mitigation |
 |---|------|-----------|--------|------------|
-| 1 | **`backdrop-filter` not supported in older browsers** | Low | Medium | Provide a fallback with solid semi-transparent background (`bg-[rgba(15,20,40,0.90)]`). Use `@supports` CSS rule. Safari has had `backdrop-filter` support since 2016; all major browsers support it. |
+| 1 | **`backdrop-filter` not supported in older browsers** | Low | Medium | Provide a fallback with solid semi-transparent background (`bg-[rgba(248,250,252,0.75)]`). Use `@supports` CSS rule. Safari has had `backdrop-filter` support since 2016; all major browsers support it. |
 | 2 | **Performance degradation from blur effects on mobile** | Medium | Medium | Reduce blur values on mobile (`blur(40px)` instead of `blur(80-120px)`). Reduce orb count. Use `will-change: transform` sparingly. Profile with Chrome DevTools on low-end device simulation. |
 | 3 | **Provider restructure breaks builder** | Low | High | Test builder at `/builder` thoroughly after moving providers. Ensure all hooks still resolve their contexts. Run the full builder flow (edit, save, export) after restructure. |
 | 4 | **Landing page JS leaks into builder bundle (or vice versa)** | Low | Medium | Verify with `next build` output and bundle analyzer. Keep `components/landing/` completely isolated from builder code. No shared imports between landing and builder components. |
@@ -826,7 +826,7 @@ For browsers that do not support `backdrop-filter`:
 /* Feature detection with @supports */
 .glass-card {
   /* Fallback: solid dark background */
-  background: rgba(15, 20, 40, 0.90);
+  background: rgba(248, 250, 252, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 1rem;
 }
@@ -853,3 +853,4 @@ For browsers that do not support `backdrop-filter`:
 ---
 
 *End of document.*
+

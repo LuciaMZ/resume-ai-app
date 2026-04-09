@@ -35,8 +35,8 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-4 right-4 left-4 z-50 rounded-2xl border border-white/10 px-4 py-3 backdrop-blur-xl transition-all duration-300 sm:px-6 ${
-        isScrolled ? 'bg-white/10 shadow-lg shadow-black/10' : 'bg-white/5'
+      className={`fixed top-4 right-4 left-4 z-50 rounded-2xl border border-[var(--color-border)] px-4 py-3 backdrop-blur-xl transition-all duration-300 sm:px-6 ${
+        isScrolled ? 'bg-white/90 shadow-lg shadow-slate-300/60' : 'bg-white/70'
       }`}
       role="navigation"
       aria-label="Main navigation"
@@ -45,14 +45,14 @@ export function Navbar() {
         {/* Logo */}
         <a
           href="#"
-          className="flex items-center gap-2.5 rounded-lg p-1 transition-opacity hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-[#0A0E1A]"
+          className="flex items-center gap-2.5 rounded-lg p-1 transition-opacity hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)] focus:ring-offset-2 focus:ring-offset-[var(--color-bg)]"
           aria-label="Resume AI APP - Back to top"
         >
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-violet-500 shadow-md shadow-blue-500/25">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-secondary)] shadow-md shadow-blue-200/60">
             <FileText className="h-4 w-4 text-white" strokeWidth={2.2} />
           </div>
-          <span className="text-lg font-semibold tracking-tight text-white">
-            Resume <span className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">AI APP</span>
+          <span className="text-lg font-semibold tracking-tight text-[var(--color-primary)]">
+            Resume <span className="text-[var(--color-secondary)]">AI APP</span>
           </span>
         </a>
 
@@ -62,7 +62,7 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-[#0A0E1A]"
+              className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)] focus:ring-offset-2 focus:ring-offset-[var(--color-bg)]"
             >
               {link.label}
             </a>
@@ -70,7 +70,7 @@ export function Navbar() {
           <div className="ml-3">
             <Link
               href="/builder"
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 via-violet-500 to-cyan-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-violet-500/40 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-[#0A0E1A]"
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-secondary)] px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-200/70 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[var(--color-secondary-hover)] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)] focus:ring-offset-2 focus:ring-offset-[var(--color-bg)]"
             >
               Start Building
               <span aria-hidden="true">&rarr;</span>
@@ -81,7 +81,7 @@ export function Navbar() {
         {/* Mobile Menu Button */}
         <button
           type="button"
-          className="rounded-lg p-2 text-slate-300 transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-400 md:hidden"
+          className="rounded-lg p-2 text-slate-600 transition-colors hover:text-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)] md:hidden"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-expanded={isMobileMenuOpen}
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
@@ -96,21 +96,21 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="mt-3 border-t border-white/10 pt-3 md:hidden">
+        <div className="mt-3 border-t border-[var(--color-border)] pt-3 md:hidden">
           <div className="flex flex-col gap-1">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)]"
               >
                 {link.label}
               </a>
             ))}
             <Link
               href="/builder"
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 via-violet-500 to-cyan-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-violet-500/40 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-secondary)] px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-200/70 transition-all duration-300 hover:bg-[var(--color-secondary-hover)] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)]"
             >
               Start Building
               <span aria-hidden="true">&rarr;</span>

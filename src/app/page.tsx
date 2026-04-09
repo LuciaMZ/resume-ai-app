@@ -11,11 +11,11 @@ import { BackgroundOrbs } from '@/components/landing/BackgroundOrbs';
 
 export default function LandingPage() {
   return (
-    <div className="relative min-h-screen bg-[#0A0E1A] text-white">
+    <div className="relative min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
       {/* Skip to content link for accessibility */}
       <a
         href="#features"
-        className="fixed top-0 left-0 z-[100] -translate-y-full rounded-br-lg bg-blue-500 px-4 py-2 text-sm font-medium text-white transition-transform focus:translate-y-0"
+        className="fixed top-0 left-0 z-[100] -translate-y-full rounded-br-lg bg-[var(--color-secondary)] px-4 py-2 text-sm font-medium text-white transition-transform focus:translate-y-0"
       >
         Skip to content
       </a>
@@ -24,7 +24,7 @@ export default function LandingPage() {
       <div
         className="pointer-events-none fixed inset-0 z-0"
         style={{
-          background: 'linear-gradient(180deg, #0A0E1A 0%, #1E1B4B 50%, #0A0E1A 100%)',
+          background: 'linear-gradient(to bottom, #F8FAFC 0%, #E5E7EB 100%)',
         }}
         aria-hidden="true"
       />

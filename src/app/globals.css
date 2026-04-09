@@ -1,6 +1,14 @@
 @import "tailwindcss";
 
 @theme inline {
+  --color-primary: #0B1F3A;
+  --color-secondary: #2563EB;
+  --color-secondary-hover: #1D4ED8;
+  --color-accent: #14B8A6;
+  --color-bg: #F8FAFC;
+  --color-text: #111827;
+  --color-border: #E5E7EB;
+
   --color-primary-50: #eff6ff;
   --color-primary-100: #dbeafe;
   --color-primary-200: #bfdbfe;
@@ -41,8 +49,8 @@ html {
 body {
   height: 100%;
   margin: 0;
-  background-color: var(--color-surface-50);
-  color: var(--color-surface-900);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font-family: var(--font-sans);
 }
 
@@ -77,15 +85,16 @@ body {
 
 /* Glassmorphism card with @supports fallback */
 .glass-card {
-  /* Fallback: solid dark background for browsers without backdrop-filter */
-  background: rgba(15, 20, 40, 0.90);
+  background: rgba(248, 250, 252, 0.75);
+  border-color: var(--color-border);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
 }
 
 @supports (backdrop-filter: blur(16px)) {
   .glass-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background: rgba(248, 250, 252, 0.75);
+    backdrop-filter: blur(12px) saturate(120%);
+    -webkit-backdrop-filter: blur(12px) saturate(120%);
   }
 }
 
