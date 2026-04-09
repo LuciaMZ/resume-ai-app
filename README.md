@@ -2,7 +2,7 @@
 
 A client-side resume builder powered by AI. Build, edit, and export professional resumes — all from your browser with no backend required.
 
-[Live Demo](LINK) · [Report Bug](https://github.com/CHANGE)
+[Live Demo](https://resume-ai-app-psi.vercel.app/) · [Report Bug](https://github.com/LuciaMZ/resume-ai-app/issues)
 
 ## Features
 
@@ -35,8 +35,8 @@ A client-side resume builder powered by AI. Build, edit, and export professional
 ### Installation
 
 ```bash
-git clone **LINK GOES HERE**
-cd RESUMEAIAPP
+git clone https://github.com/LuciaMZ/resume-ai-app.git
+cd resume-ai-app
 pnpm install
 ```
 
